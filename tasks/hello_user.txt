@@ -1,43 +1,37 @@
-
 .data:
-    str STRING "Hello, "
-    user_name BUFFER 64
+    str STRING Hello,
+    buf BUFFER 64
 
 .code:
-    ; загрузить адрес буфера user_name в регистр r1
-    LOAD r1, user_name
+LOAD r1, user
+read:
+    INPUT [r1]
+    INC r1
+    CMP [r1], 0
+    JZ end_read
+    JMP read
+end_read:
+    DEC r1
 
-    ; считать строку из стандартного ввода в буфер user_name
-    read:
-        INPUT [r1]
-        INC r1
-        CMP [r1], 0xA ; проверить, достигнут ли конец строки (символ перевода строки)
-        JNZ READ
-        DEC r1 ; вернуться на один символ назад, так как последний символ - символ перевода строки
-
-    ; загрузить адрес строки greeting в регистр r1
-    LOAD r1, greeting
-
-    ; вывести строку на экран
-    PRINT:
-        OUTPUT [r1]
-        INC r1
-        CMP [r1], 0 ; проверить, достигнут ли конец строки (конец строки обозначается нулевым байтом)
-        JNZ PRINT
-
-    ; загрузить адрес буфера user_name в регистр r1
-    LOAD r1, user_name
-
-    ; вывести содержимое буфера user_name на экран
-    PRINT_NAME:
-        OUTPUT [r1]
-        INC r1
-        CMP [r1], 0xA ; проверить, достигнут ли конец строки (символ перевода строки)
-        JNZ PRINT_NAME
-
-    ; вывести символ перевода строки на экран
-    LOAD r1, 0xA
+LOAD r1, str
+print:
     OUTPUT [r1]
+    INC r1
+    CMP [r1], 0
+    JZ end_print
+    JMP print
+end_print:
 
-    ; остановить выполнение программы
-    HLT
+LOAD r1, user
+print_user:
+    OUTPUT [r1]
+    INC r1
+    CMP [r1], 0
+    JZ end_print_user
+    JMP print_user
+
+end_print_user:
+LOAD r1, 0
+OUTPUT [r1]
+
+HLT

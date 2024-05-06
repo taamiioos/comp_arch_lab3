@@ -2,40 +2,42 @@ import json
 from enum import Enum
 
 class Opcode(Enum):
-    LOAD = 'loadmr'
-    MOV = 'movnr'
-    CMP = 'subrn'
-    MOD = 'modrrn'
-    ADD = 'addmr'
-    INC = 'incr'
+    LOAD = 'load'
+    MOV = 'mov'
+    CMP_RN = 'sub'
+    MOD = 'mod'
+    ADD = 'add'
+    INC = 'inc'
+    DEC = 'dec'
     JMP = 'jmp'
     JZ = 'jz'
     HLT = 'hlt'
-    INPUT = 'loadmr'
-    OUTPUT = 'loadrm'
     NUMBER = "number"
     STRING = "string"
     BUFFER = "buffer"
 
 
+
 class MachineCode:
-    def __init__(self, index, opcode, args=None):
+    def __init__(self, index, opcode, args=None, arg_type=None):
         self.index = index
         self.opcode = opcode.value if isinstance(opcode, Opcode) else opcode
         self.args = args if args else []
+        self.arg_type = arg_type
 
     def to_dict(self):
         return {
             "index": self.index,
             "opcode": self.opcode,
-            "args": self.args
+            "args": self.args,
+            "arg_type": self.arg_type
         }
 
 
 
 def write_code(filename, code):
     with open(filename, "w") as f:
-        json.dump([instr.to_dict() for instr in code], f, indent=4)
+        json.dump([instr for instr in code], f, indent=4)
 
 
 

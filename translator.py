@@ -3,32 +3,34 @@ import re
 from typing import Tuple, List, Dict
 from processor.isa import Opcode, MachineCode, write_code
 
+# обработка скобок квадратных
+# input и output замена на адрес 1 0
 
-# удаление комментариев из строки
+# удаление комментариев из строки (заменить)
 def get_meaningful_token(line: str) -> str:
     return line.split(";", 1)[0].strip()
 
 # перевод секции данных из ассемблерного кода в словарь переменных
-def translate_data_part(lines: List[str]) -> Tuple[Dict[str, List], List[Tuple]]:
+def translate_data_part(lines: List[str]) -> Tuple[Dict[str, List[int]], List[int]]:
     variables = {}
-    data_tokens = []
+    data_tokens = [0,0]
     for line in lines:
-        line = line.strip()
-        if not line or line.startswith(';'):
-            continue
-        # поиск совпадения с шаблоном регулярного выражения, которое соответствует объявлению переменной в секции данных.
-        var_match = re.match(r'(\w+)\s+(STRING|BUFFER)\s+(.+)', line)
-        if var_match:
-            variable_name = var_match.group(1)  # извлекается имя
-            var_type = var_match.group(2)  # извлекается тип
-            value = var_match.group(3)  # извлекается значение
-            if var_type == 'STRING':
-                variables[variable_name] = [ord(c) for c in value if c != '"']
-                variables[variable_name].append(0)
-                data_tokens.append((variable_name, var_type, value))
-            elif var_type == 'BUFFER':
-                variables[variable_name] = [0] * int(value)
-                data_tokens.append((variable_name, var_type, value))
+        line = get_meaningful_token(line)
+
+        name, opcode, value = line.split(" ", 2)
+
+        variables[name] = [len(data_tokens)]
+        if opcode == 'STRING':
+            data_tokens += [ord(c) for c in value]
+            data_tokens.append(0)
+        elif opcode == 'BUFFER':
+            data_tokens += [0] * int(value)
+        elif opcode == 'NUMBER':
+            data_tokens.append(int(value))
+        else:
+            raise ValueError("No data opcode")
+
+    data_tokens = [len(data_tokens)] + data_tokens
 
     return variables, data_tokens
 
@@ -36,11 +38,15 @@ def translate_data_part(lines: List[str]) -> Tuple[Dict[str, List], List[Tuple]]
 # перевод инструкций в MachineCode
 def translate_code_part(lines: List[str]) -> List[MachineCode]:
     tokens = []
+    labels = {}
 
     for line in lines:
-        line = line.strip()
+        line = get_meaningful_token(line)
 
-        if not line or line.startswith(';'):
+        label_match = re.match(r'(\w+):', line)
+        if label_match:
+            label_name = label_match.group(1)
+            labels[label_name] = len(tokens)
             continue
 
         parts = line.split()
@@ -84,14 +90,12 @@ def translate_code_part(lines: List[str]) -> List[MachineCode]:
             else:
                 raise ValueError(f"Instruction '{opcode}' has invalid number of arguments")
 
-    return tokens
+    return tokens, labels
 
 
-# Трансляция текста в последовательность операторов языка (токенов).
 def translate_stage_1(code: str) -> Tuple[Dict[str, int], Dict[str, List], List]:
     lines = code.split('\n')
 
-    labels = {}
     tokens = []
 
     data_lines = []
@@ -118,94 +122,115 @@ def translate_stage_1(code: str) -> Tuple[Dict[str, int], Dict[str, List], List]
     tokens.extend(data_tokens)
 
     # Переводим часть кода
-    code_tokens = translate_code_part(code_lines)
-
-    # Обрабатываем метки
-    for i, line in enumerate(code_lines):
-        label_match = re.match(r'(\w+):', line)
-        if label_match:
-            label_name = label_match.group(1)
-            labels[label_name] = len(tokens)
-            continue
+    code_tokens, labels = translate_code_part(code_lines)
 
     # Объединяем токены
     tokens.extend(code_tokens)
 
     return labels, variables, tokens
 
+def translate_stage_1(code: str) -> Tuple[Dict[str, int], Dict[str, List], List]:
+    lines = code.split('\n')
 
+    tokens = []
+
+    data_lines = []
+    code_lines = []
+
+    data_section = False
+    code_section = False
+
+    for line in lines:
+        if line.strip().startswith('.data'):
+            data_section = True
+            code_section = False
+        elif line.strip().startswith('.code'):
+            data_section = False
+            code_section = True
+
+        if data_section:
+            data_lines.append(line)
+        elif code_section:
+            code_lines.append(line)
+
+    # Переводим часть данных
+    variables, data_tokens = translate_data_part(data_lines)
+    tokens.extend(data_tokens)
+
+    # Переводим часть кода
+    code_tokens, labels = translate_code_part(code_lines)
+
+    # Объединяем токены
+    tokens.extend(code_tokens)
+
+    return labels, variables, tokens
 # Генерация машинного кода.
 def translate_stage_2(labels: Dict[str, int], variables: Dict[str, List], tokens: List) -> Tuple[List[int], List[str]]:
+    data = []
     code = []
-    mnemonics = []
-
+    print(variables)
     for token in tokens:
-        if isinstance(token, tuple):
-            opcode, args = token
+        print(token)
+        if isinstance(token, int):
+            data.append(token)
+
+
         else:
-            # если токен является числом, добавление его в код
-            code.append(token)
-            mnemonics.append(str(token))
-            continue
+            # token is MachineCode
+            # преобразование мнемоники в индекс
+            # opcode_index = list(Opcode).index(Opcode[opcode.upper()])
+            # code.append(opcode_index)
+            print(token)
+            command = token.to_dict()
 
-        # преобразование мнемоники в индекс
-        opcode_index = list(Opcode).index(Opcode[opcode.upper()])
-        code.append(opcode_index)
-        mnemonics.append(opcode)
+            args = command["args"]
+            new_args = []
 
-        # обработка аргументов
-        for arg in args:
-            if isinstance(arg, int) or arg.isnumeric():
-                # обработка числовых аргументов
-                code.append(int(arg))
-                mnemonics.append(str(int(arg)))
+            # обработка аргументов
+            for arg in args:
+                if isinstance(arg, int) or arg.isnumeric():
+                    # обработка числовых аргументов
+                    new_args.append(int(arg))
+                    continue
+                arg = arg.strip(',')
+
+
                 if arg in labels:
                     # замена метки на соответствующий индекс
-                    code.append(labels[arg])
-                    mnemonics.append(f"label:{arg}")
+                    new_args.append(labels[arg])
 
-            elif arg in variables:
-                # обработка переменных
-                code.append(variables[arg][0])
-                mnemonics.append(f"variable:{arg}")
-            elif isinstance(arg, str) and arg.endswith(','):
-                # remove the trailing comma and convert the argument to a register index
-                arg = arg.rstrip(',')
-                register_index = int(arg[1:])
-                code.append(register_index)
-                mnemonics.append(arg)
-            else:
-                # обработка регистров и других случаев
-                code.append(arg)
-                mnemonics.append(arg)
+                elif arg in variables:
+                    # обработка переменных
+                    new_args.append(variables[arg])
+                elif isinstance(arg, str) and arg.startswith('r'):
+                    # обработка регистров
+                    new_args.append(int(arg[1:]))
 
-    return code, mnemonics
+                else:
+                    # обработка других случаев
+                    new_args.append(arg)
+            command['args'] = new_args
+            code.append(command)
 
+    total_code = [data] + code
+
+    return total_code
 
 
 
 # полная трансляция кода
 def translate(code: str) -> Tuple[List[int], List[str]]:
     labels, variables, code_tokens = translate_stage_1(code)
-    code, mnemonics = translate_stage_2(labels, variables, code_tokens)
-    return code, mnemonics
+    code = translate_stage_2(labels, variables, code_tokens)
+    return code
 
 
-def main(source: str, target: str, target_mnem: str = None):
+def main(source: str, target: str):
     with open(source, "r") as f:
         text = f.read()
 
-    code, mnemonics = translate(text)
-
-    if target_mnem is not None:
-        with open(target_mnem, "w") as f:
-            for line in mnemonics:
-                f.write(line + "\n")
-
+    code = translate(text)
     write_code(target, code)
-    print("Mnemonics:")
-    for line in mnemonics:
-        print(line)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Трансляция кода")
@@ -214,6 +239,5 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    MNEMONIC_FILE = args.target_file + ".mnem"
 
-    main(args.source_file, args.target_file, MNEMONIC_FILE)
+    main(args.source_file, args.target_file)
