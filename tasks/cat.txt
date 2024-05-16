@@ -1,10 +1,11 @@
 .code
-loop:
-    INPUT r1
-    CMP r1, 0xFF
-    JZ end
-    OUTPUT r1
-    JMP loop
+
+main_loop:
+    INPUT r2
+    JZ_R end r2
+    OUTPUT r2
+    JMP main_loop
+
 end:
     HLT
 

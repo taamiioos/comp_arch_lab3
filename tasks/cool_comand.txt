@@ -1,0 +1,11 @@
+.code:
+    MOV r1 1
+    MOV r2 2
+    MOV r3 3
+
+    LINEAR r4 100 r1 200 r2 300 r3
+
+    OUTPUT r4
+
+    HLT
+

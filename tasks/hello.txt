@@ -1,15 +1,15 @@
 .data
-    str STRING hello world
+    STRING str "hello world"
 
 .code
-    LOAD r1, str
+    MOV r1 str
+    LOAD_R r2 r1
 
-print:
-    LOAD r2, [r1]
+print_str:
+    JZ_R end r2
     OUTPUT r2
-    CMP r2, 0
-    JZ end
-    INC r1
-    JMP print
+    NEXT r2 r1
+    JMP print_str
+
 end:
     HLT

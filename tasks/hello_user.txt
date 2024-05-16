@@ -1,37 +1,36 @@
 .data:
-    str STRING Hello,
-    buf BUFFER 64
+    STRING str "hello, "
+    BUFFER user 40
 
 .code:
-LOAD r1, user
+    MOV r1 user
+
 read:
-    INPUT [r1]
+    INPUT r2
+    JZ_R end_read r2
+    STORE_R r1 r2
     INC r1
-    CMP [r1], 0
-    JZ end_read
     JMP read
+
 end_read:
-    DEC r1
+    MOV r1 str
+    LOAD_R r2 r1
 
-LOAD r1, str
 print:
-    OUTPUT [r1]
-    INC r1
-    CMP [r1], 0
-    JZ end_print
+    JZ_R end_print r2
+    OUTPUT r2
+    NEXT r2 r1
     JMP print
-end_print:
 
-LOAD r1, user
+end_print:
+    MOV r1 user
+    LOAD_R r2 r1
+
 print_user:
-    OUTPUT [r1]
-    INC r1
-    CMP [r1], 0
-    JZ end_print_user
+    JZ_R end r2
+    OUTPUT r2
+    NEXT r2 r1
     JMP print_user
 
-end_print_user:
-LOAD r1, 0
-OUTPUT [r1]
-
-HLT
+end:
+    HLT

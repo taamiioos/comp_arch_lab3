@@ -1,0 +1,206 @@
+in_source: |-
+  .data:
+      NUMBER sum 0
+
+  .code:
+      MOV r1 1
+
+  loop:
+      CMP r1 1000
+      JZ end_loop
+      MOD_RRV r2 r1 3
+      JZ_R add_to_sum r2
+      MOD_RRV r2 r1 5
+      JZ_R add_to_sum r2
+      JMP next_iter
+
+  add_to_sum:
+      ADD_MMR sum sum r1
+
+  next_iter:
+      INC r1
+      JMP loop
+
+  end_loop:
+      LOAD_V r2 sum
+      OUTPUT r2
+      HLT
+
+in_stdin: |
+out_stdout: |
+  LoC: 26 Instr: 18
+  ============================================================
+  233168
+  Instructions: 8331 Ticks: 11395
+out_code: |-
+  [3,
+   {"index": 0, "opcode": "number", "args": [1234]},
+   {"index": 1, "opcode": "number", "args": [1234]},
+   {"index": 2, "opcode": "number", "args": [0]},
+   {"index": 0, "opcode": "mov", "args": [0, 1]},
+   {"index": 1, "opcode": "cmp", "args": [0, 1000]},
+   {"index": 2, "opcode": "jz", "args": [11]},
+   {"index": 3, "opcode": "mod_rrv", "args": [1, 0, 3]},
+   {"index": 4, "opcode": "jz_r", "args": [8, 1]},
+   {"index": 5, "opcode": "mod_rrv", "args": [1, 0, 5]},
+   {"index": 6, "opcode": "jz_r", "args": [8, 1]},
+   {"index": 7, "opcode": "jmp", "args": [9]},
+   {"index": 8, "opcode": "add_mmr", "args": [2, 2, 0]},
+   {"index": 9, "opcode": "inc", "args": [0]},
+   {"index": 10, "opcode": "jmp", "args": [1]},
+   {"index": 11, "opcode": "load_v", "args": [1, 2]},
+   {"index": 12, "opcode": "store_v", "args": [1, 1]},
+   {"index": 13, "opcode": "hlt", "args": []}]
+out_log: |
+  INFO     root:simulation.py:60 Start simulation
+  DEBUG    root:simulation.py:26 TICK:    1 [ 1: CMP    ] PC:  1 DR:  0 SB:  0 RG: [1, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:    2 [ 2: JZ     ] PC:  2 DR:  0 SB:  0 RG: [1, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:    3 [ 3: MOD_RRV] PC:  3 DR:  0 SB:  0 RG: [1, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:    5 [ 4: JZ_R   ] PC:  4 DR:  0 SB:  0 RG: [1, 1, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:    6 [ 5: MOD_RRV] PC:  5 DR:  0 SB:  0 RG: [1, 1, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:    8 [ 6: JZ_R   ] PC:  6 DR:  0 SB:  0 RG: [1, 1, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:    9 [ 7: JMP    ] PC:  7 DR:  0 SB:  0 RG: [1, 1, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   10 [ 9: INC    ] PC:  9 DR:  0 SB:  0 RG: [1, 1, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   11 [10: JMP    ] PC: 10 DR:  0 SB:  0 RG: [2, 1, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   12 [ 1: CMP    ] PC:  1 DR:  0 SB:  0 RG: [2, 1, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   13 [ 2: JZ     ] PC:  2 DR:  0 SB:  0 RG: [2, 1, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   14 [ 3: MOD_RRV] PC:  3 DR:  0 SB:  0 RG: [2, 1, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   16 [ 4: JZ_R   ] PC:  4 DR:  0 SB:  0 RG: [2, 2, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   17 [ 5: MOD_RRV] PC:  5 DR:  0 SB:  0 RG: [2, 2, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   19 [ 6: JZ_R   ] PC:  6 DR:  0 SB:  0 RG: [2, 2, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   20 [ 7: JMP    ] PC:  7 DR:  0 SB:  0 RG: [2, 2, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   21 [ 9: INC    ] PC:  9 DR:  0 SB:  0 RG: [2, 2, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   22 [10: JMP    ] PC: 10 DR:  0 SB:  0 RG: [3, 2, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   23 [ 1: CMP    ] PC:  1 DR:  0 SB:  0 RG: [3, 2, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   24 [ 2: JZ     ] PC:  2 DR:  0 SB:  0 RG: [3, 2, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   25 [ 3: MOD_RRV] PC:  3 DR:  0 SB:  0 RG: [3, 2, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   27 [ 4: JZ_R   ] PC:  4 DR:  0 SB:  0 RG: [3, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   28 [ 8: ADD_MMR] PC:  8 DR:  0 SB:  0 RG: [3, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   32 [ 9: INC    ] PC:  9 DR:  2 SB:  0 RG: [3, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   33 [10: JMP    ] PC: 10 DR:  2 SB:  0 RG: [4, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   34 [ 1: CMP    ] PC:  1 DR:  2 SB:  0 RG: [4, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   35 [ 2: JZ     ] PC:  2 DR:  2 SB:  0 RG: [4, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   36 [ 3: MOD_RRV] PC:  3 DR:  2 SB:  0 RG: [4, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   38 [ 4: JZ_R   ] PC:  4 DR:  2 SB:  0 RG: [4, 1, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   39 [ 5: MOD_RRV] PC:  5 DR:  2 SB:  0 RG: [4, 1, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   41 [ 6: JZ_R   ] PC:  6 DR:  2 SB:  0 RG: [4, 4, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   42 [ 7: JMP    ] PC:  7 DR:  2 SB:  0 RG: [4, 4, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   43 [ 9: INC    ] PC:  9 DR:  2 SB:  0 RG: [4, 4, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   44 [10: JMP    ] PC: 10 DR:  2 SB:  0 RG: [5, 4, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   45 [ 1: CMP    ] PC:  1 DR:  2 SB:  0 RG: [5, 4, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   46 [ 2: JZ     ] PC:  2 DR:  2 SB:  0 RG: [5, 4, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   47 [ 3: MOD_RRV] PC:  3 DR:  2 SB:  0 RG: [5, 4, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   49 [ 4: JZ_R   ] PC:  4 DR:  2 SB:  0 RG: [5, 2, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   50 [ 5: MOD_RRV] PC:  5 DR:  2 SB:  0 RG: [5, 2, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   52 [ 6: JZ_R   ] PC:  6 DR:  2 SB:  0 RG: [5, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   53 [ 8: ADD_MMR] PC:  8 DR:  2 SB:  0 RG: [5, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   57 [ 9: INC    ] PC:  9 DR:  2 SB:  3 RG: [5, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   58 [10: JMP    ] PC: 10 DR:  2 SB:  3 RG: [6, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   59 [ 1: CMP    ] PC:  1 DR:  2 SB:  3 RG: [6, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   60 [ 2: JZ     ] PC:  2 DR:  2 SB:  3 RG: [6, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   61 [ 3: MOD_RRV] PC:  3 DR:  2 SB:  3 RG: [6, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   63 [ 4: JZ_R   ] PC:  4 DR:  2 SB:  0 RG: [6, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   64 [ 8: ADD_MMR] PC:  8 DR:  2 SB:  0 RG: [6, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   68 [ 9: INC    ] PC:  9 DR:  2 SB:  8 RG: [6, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   69 [10: JMP    ] PC: 10 DR:  2 SB:  8 RG: [7, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   70 [ 1: CMP    ] PC:  1 DR:  2 SB:  8 RG: [7, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   71 [ 2: JZ     ] PC:  2 DR:  2 SB:  8 RG: [7, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   72 [ 3: MOD_RRV] PC:  3 DR:  2 SB:  8 RG: [7, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   74 [ 4: JZ_R   ] PC:  4 DR:  2 SB:  0 RG: [7, 1, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   75 [ 5: MOD_RRV] PC:  5 DR:  2 SB:  0 RG: [7, 1, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   77 [ 6: JZ_R   ] PC:  6 DR:  2 SB:  0 RG: [7, 2, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   78 [ 7: JMP    ] PC:  7 DR:  2 SB:  0 RG: [7, 2, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   79 [ 9: INC    ] PC:  9 DR:  2 SB:  0 RG: [7, 2, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   80 [10: JMP    ] PC: 10 DR:  2 SB:  0 RG: [8, 2, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   81 [ 1: CMP    ] PC:  1 DR:  2 SB:  0 RG: [8, 2, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   82 [ 2: JZ     ] PC:  2 DR:  2 SB:  0 RG: [8, 2, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   83 [ 3: MOD_RRV] PC:  3 DR:  2 SB:  0 RG: [8, 2, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   85 [ 4: JZ_R   ] PC:  4 DR:  2 SB:  0 RG: [8, 2, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   86 [ 5: MOD_RRV] PC:  5 DR:  2 SB:  0 RG: [8, 2, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   88 [ 6: JZ_R   ] PC:  6 DR:  2 SB:  0 RG: [8, 3, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   89 [ 7: JMP    ] PC:  7 DR:  2 SB:  0 RG: [8, 3, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   90 [ 9: INC    ] PC:  9 DR:  2 SB:  0 RG: [8, 3, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   91 [10: JMP    ] PC: 10 DR:  2 SB:  0 RG: [9, 3, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   92 [ 1: CMP    ] PC:  1 DR:  2 SB:  0 RG: [9, 3, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   93 [ 2: JZ     ] PC:  2 DR:  2 SB:  0 RG: [9, 3, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   94 [ 3: MOD_RRV] PC:  3 DR:  2 SB:  0 RG: [9, 3, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   96 [ 4: JZ_R   ] PC:  4 DR:  2 SB:  0 RG: [9, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   97 [ 8: ADD_MMR] PC:  8 DR:  2 SB:  0 RG: [9, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  101 [ 9: INC    ] PC:  9 DR:  2 SB: 14 RG: [9, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  102 [10: JMP    ] PC: 10 DR:  2 SB: 14 RG: [10, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  103 [ 1: CMP    ] PC:  1 DR:  2 SB: 14 RG: [10, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  104 [ 2: JZ     ] PC:  2 DR:  2 SB: 14 RG: [10, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  105 [ 3: MOD_RRV] PC:  3 DR:  2 SB: 14 RG: [10, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  107 [ 4: JZ_R   ] PC:  4 DR:  2 SB:  0 RG: [10, 1, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  108 [ 5: MOD_RRV] PC:  5 DR:  2 SB:  0 RG: [10, 1, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  110 [ 6: JZ_R   ] PC:  6 DR:  2 SB:  0 RG: [10, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  111 [ 8: ADD_MMR] PC:  8 DR:  2 SB:  0 RG: [10, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  115 [ 9: INC    ] PC:  9 DR:  2 SB: 23 RG: [10, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  116 [10: JMP    ] PC: 10 DR:  2 SB: 23 RG: [11, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  117 [ 1: CMP    ] PC:  1 DR:  2 SB: 23 RG: [11, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  118 [ 2: JZ     ] PC:  2 DR:  2 SB: 23 RG: [11, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  119 [ 3: MOD_RRV] PC:  3 DR:  2 SB: 23 RG: [11, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  121 [ 4: JZ_R   ] PC:  4 DR:  2 SB:  0 RG: [11, 2, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  122 [ 5: MOD_RRV] PC:  5 DR:  2 SB:  0 RG: [11, 2, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  124 [ 6: JZ_R   ] PC:  6 DR:  2 SB:  0 RG: [11, 1, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  125 [ 7: JMP    ] PC:  7 DR:  2 SB:  0 RG: [11, 1, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  126 [ 9: INC    ] PC:  9 DR:  2 SB:  0 RG: [11, 1, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  127 [10: JMP    ] PC: 10 DR:  2 SB:  0 RG: [12, 1, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  128 [ 1: CMP    ] PC:  1 DR:  2 SB:  0 RG: [12, 1, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  129 [ 2: JZ     ] PC:  2 DR:  2 SB:  0 RG: [12, 1, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  130 [ 3: MOD_RRV] PC:  3 DR:  2 SB:  0 RG: [12, 1, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  132 [ 4: JZ_R   ] PC:  4 DR:  2 SB:  0 RG: [12, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  133 [ 8: ADD_MMR] PC:  8 DR:  2 SB:  0 RG: [12, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  137 [ 9: INC    ] PC:  9 DR:  2 SB: 33 RG: [12, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  138 [10: JMP    ] PC: 10 DR:  2 SB: 33 RG: [13, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  139 [ 1: CMP    ] PC:  1 DR:  2 SB: 33 RG: [13, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  140 [ 2: JZ     ] PC:  2 DR:  2 SB: 33 RG: [13, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  141 [ 3: MOD_RRV] PC:  3 DR:  2 SB: 33 RG: [13, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  143 [ 4: JZ_R   ] PC:  4 DR:  2 SB:  0 RG: [13, 1, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  144 [ 5: MOD_RRV] PC:  5 DR:  2 SB:  0 RG: [13, 1, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  146 [ 6: JZ_R   ] PC:  6 DR:  2 SB:  0 RG: [13, 3, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  147 [ 7: JMP    ] PC:  7 DR:  2 SB:  0 RG: [13, 3, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  148 [ 9: INC    ] PC:  9 DR:  2 SB:  0 RG: [13, 3, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  149 [10: JMP    ] PC: 10 DR:  2 SB:  0 RG: [14, 3, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  150 [ 1: CMP    ] PC:  1 DR:  2 SB:  0 RG: [14, 3, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  151 [ 2: JZ     ] PC:  2 DR:  2 SB:  0 RG: [14, 3, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  152 [ 3: MOD_RRV] PC:  3 DR:  2 SB:  0 RG: [14, 3, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  154 [ 4: JZ_R   ] PC:  4 DR:  2 SB:  0 RG: [14, 2, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  155 [ 5: MOD_RRV] PC:  5 DR:  2 SB:  0 RG: [14, 2, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  157 [ 6: JZ_R   ] PC:  6 DR:  2 SB:  0 RG: [14, 4, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  158 [ 7: JMP    ] PC:  7 DR:  2 SB:  0 RG: [14, 4, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  159 [ 9: INC    ] PC:  9 DR:  2 SB:  0 RG: [14, 4, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  160 [10: JMP    ] PC: 10 DR:  2 SB:  0 RG: [15, 4, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  161 [ 1: CMP    ] PC:  1 DR:  2 SB:  0 RG: [15, 4, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  162 [ 2: JZ     ] PC:  2 DR:  2 SB:  0 RG: [15, 4, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  163 [ 3: MOD_RRV] PC:  3 DR:  2 SB:  0 RG: [15, 4, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  165 [ 4: JZ_R   ] PC:  4 DR:  2 SB:  0 RG: [15, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  166 [ 8: ADD_MMR] PC:  8 DR:  2 SB:  0 RG: [15, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  170 [ 9: INC    ] PC:  9 DR:  2 SB: 45 RG: [15, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  171 [10: JMP    ] PC: 10 DR:  2 SB: 45 RG: [16, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  172 [ 1: CMP    ] PC:  1 DR:  2 SB: 45 RG: [16, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  173 [ 2: JZ     ] PC:  2 DR:  2 SB: 45 RG: [16, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  174 [ 3: MOD_RRV] PC:  3 DR:  2 SB: 45 RG: [16, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  176 [ 4: JZ_R   ] PC:  4 DR:  2 SB:  0 RG: [16, 1, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  177 [ 5: MOD_RRV] PC:  5 DR:  2 SB:  0 RG: [16, 1, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  179 [ 6: JZ_R   ] PC:  6 DR:  2 SB:  0 RG: [16, 1, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  180 [ 7: JMP    ] PC:  7 DR:  2 SB:  0 RG: [16, 1, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  181 [ 9: INC    ] PC:  9 DR:  2 SB:  0 RG: [16, 1, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  182 [10: JMP    ] PC: 10 DR:  2 SB:  0 RG: [17, 1, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  183 [ 1: CMP    ] PC:  1 DR:  2 SB:  0 RG: [17, 1, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  184 [ 2: JZ     ] PC:  2 DR:  2 SB:  0 RG: [17, 1, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  185 [ 3: MOD_RRV] PC:  3 DR:  2 SB:  0 RG: [17, 1, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  187 [ 4: JZ_R   ] PC:  4 DR:  2 SB:  0 RG: [17, 2, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  188 [ 5: MOD_RRV] PC:  5 DR:  2 SB:  0 RG: [17, 2, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  190 [ 6: JZ_R   ] PC:  6 DR:  2 SB:  0 RG: [17, 2, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  191 [ 7: JMP    ] PC:  7 DR:  2 SB:  0 RG: [17, 2, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  192 [ 9: INC    ] PC:  9 DR:  2 SB:  0 RG: [17, 2, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  193 [10: JMP    ] PC: 10 DR:  2 SB:  0 RG: [18, 2, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  194 [ 1: CMP    ] PC:  1 DR:  2 SB:  0 RG: [18, 2, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  195 [ 2: JZ     ] PC:  2 DR:  2 SB:  0 RG: [18, 2, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  196 [ 3: MOD_RRV] PC:  3 DR:  2 SB:  0 RG: [18, 2, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  198 [ 4: JZ_R   ] PC:  4 DR:  2 SB:  0 RG: [18, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  199 [ 8: ADD_MMR] PC:  8 DR:  2 SB:  0 RG: [18, 0, 0, 0] 
+  DEBUG    root:data_path.py:153 output: 233168 << 233168
+  INFO     root:simulation.py:42 output_buffer: 233168
+  INFO     root:simulation.py:68 End simulation

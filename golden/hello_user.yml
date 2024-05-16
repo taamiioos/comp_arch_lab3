@@ -1,0 +1,242 @@
+in_source: |-
+  .data:
+      STRING str "hello, "
+      BUFFER user 40
+
+  .code:
+      MOV r1 user
+
+  read:
+      INPUT r2
+      JZ_R end_read r2
+      STORE_R r1 r2
+      INC r1
+      JMP read
+
+  end_read:
+      MOV r1 str
+      LOAD_R r2 r1
+
+  print:
+      JZ_R end_print r2
+      OUTPUT r2
+      NEXT r2 r1
+      JMP print
+
+  end_print:
+      MOV r1 user
+      LOAD_R r2 r1
+
+  print_user:
+      JZ_R end r2
+      OUTPUT r2
+      NEXT r2 r1
+      JMP print_user
+
+  end:
+      HLT
+
+in_stdin: |-
+  Tanya!!
+out_stdout: |
+  LoC: 36 Instr: 70
+  ============================================================
+  hello, Tanya!!
+  Instructions: 101 Ticks: 159
+out_code: |-
+  [50,
+   {"index": 0, "opcode": "number", "args": [1234]},
+   {"index": 1, "opcode": "number", "args": [1234]},
+   {"index": 2, "opcode": "string", "args": [104]},
+   {"index": 3, "opcode": "string", "args": [101]},
+   {"index": 4, "opcode": "string", "args": [108]},
+   {"index": 5, "opcode": "string", "args": [108]},
+   {"index": 6, "opcode": "string", "args": [111]},
+   {"index": 7, "opcode": "string", "args": [44]},
+   {"index": 8, "opcode": "string", "args": [32]},
+   {"index": 9, "opcode": "string", "args": [0]},
+   {"index": 10, "opcode": "buffer", "args": [0]},
+   {"index": 11, "opcode": "buffer", "args": [0]},
+   {"index": 12, "opcode": "buffer", "args": [0]},
+   {"index": 13, "opcode": "buffer", "args": [0]},
+   {"index": 14, "opcode": "buffer", "args": [0]},
+   {"index": 15, "opcode": "buffer", "args": [0]},
+   {"index": 16, "opcode": "buffer", "args": [0]},
+   {"index": 17, "opcode": "buffer", "args": [0]},
+   {"index": 18, "opcode": "buffer", "args": [0]},
+   {"index": 19, "opcode": "buffer", "args": [0]},
+   {"index": 20, "opcode": "buffer", "args": [0]},
+   {"index": 21, "opcode": "buffer", "args": [0]},
+   {"index": 22, "opcode": "buffer", "args": [0]},
+   {"index": 23, "opcode": "buffer", "args": [0]},
+   {"index": 24, "opcode": "buffer", "args": [0]},
+   {"index": 25, "opcode": "buffer", "args": [0]},
+   {"index": 26, "opcode": "buffer", "args": [0]},
+   {"index": 27, "opcode": "buffer", "args": [0]},
+   {"index": 28, "opcode": "buffer", "args": [0]},
+   {"index": 29, "opcode": "buffer", "args": [0]},
+   {"index": 30, "opcode": "buffer", "args": [0]},
+   {"index": 31, "opcode": "buffer", "args": [0]},
+   {"index": 32, "opcode": "buffer", "args": [0]},
+   {"index": 33, "opcode": "buffer", "args": [0]},
+   {"index": 34, "opcode": "buffer", "args": [0]},
+   {"index": 35, "opcode": "buffer", "args": [0]},
+   {"index": 36, "opcode": "buffer", "args": [0]},
+   {"index": 37, "opcode": "buffer", "args": [0]},
+   {"index": 38, "opcode": "buffer", "args": [0]},
+   {"index": 39, "opcode": "buffer", "args": [0]},
+   {"index": 40, "opcode": "buffer", "args": [0]},
+   {"index": 41, "opcode": "buffer", "args": [0]},
+   {"index": 42, "opcode": "buffer", "args": [0]},
+   {"index": 43, "opcode": "buffer", "args": [0]},
+   {"index": 44, "opcode": "buffer", "args": [0]},
+   {"index": 45, "opcode": "buffer", "args": [0]},
+   {"index": 46, "opcode": "buffer", "args": [0]},
+   {"index": 47, "opcode": "buffer", "args": [0]},
+   {"index": 48, "opcode": "buffer", "args": [0]},
+   {"index": 49, "opcode": "buffer", "args": [0]},
+   {"index": 0, "opcode": "mov", "args": [0, 10]},
+   {"index": 1, "opcode": "load_v", "args": [1, 0]},
+   {"index": 2, "opcode": "jz_r", "args": [6, 1]},
+   {"index": 3, "opcode": "store_r", "args": [0, 1]},
+   {"index": 4, "opcode": "inc", "args": [0]},
+   {"index": 5, "opcode": "jmp", "args": [1]},
+   {"index": 6, "opcode": "mov", "args": [0, 2]},
+   {"index": 7, "opcode": "load_r", "args": [1, 0]},
+   {"index": 8, "opcode": "jz_r", "args": [12, 1]},
+   {"index": 9, "opcode": "store_v", "args": [1, 1]},
+   {"index": 10, "opcode": "next", "args": [1, 0]},
+   {"index": 11, "opcode": "jmp", "args": [8]},
+   {"index": 12, "opcode": "mov", "args": [0, 10]},
+   {"index": 13, "opcode": "load_r", "args": [1, 0]},
+   {"index": 14, "opcode": "jz_r", "args": [18, 1]},
+   {"index": 15, "opcode": "store_v", "args": [1, 1]},
+   {"index": 16, "opcode": "next", "args": [1, 0]},
+   {"index": 17, "opcode": "jmp", "args": [14]},
+   {"index": 18, "opcode": "hlt", "args": []}]
+out_log: |
+  INFO     root:simulation.py:60 Start simulation
+  DEBUG    root:simulation.py:26 TICK:    1 [ 1: LOAD_V ] PC:  1 DR:  0 SB:  0 RG: [10, 0, 0, 0] 
+  DEBUG    root:data_path.py:148 input: T
+  DEBUG    root:simulation.py:26 TICK:    3 [ 2: JZ_R   ] PC:  2 DR:  0 SB:  0 RG: [10, 84, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:    4 [ 3: STORE_R] PC:  3 DR:  0 SB:  0 RG: [10, 84, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:    6 [ 4: INC    ] PC:  4 DR: 10 SB:  0 RG: [10, 84, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:    7 [ 5: JMP    ] PC:  5 DR: 10 SB:  0 RG: [11, 84, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:    8 [ 1: LOAD_V ] PC:  1 DR: 10 SB:  0 RG: [11, 84, 0, 0] 
+  DEBUG    root:data_path.py:148 input: a
+  DEBUG    root:simulation.py:26 TICK:   10 [ 2: JZ_R   ] PC:  2 DR:  0 SB:  0 RG: [11, 97, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   11 [ 3: STORE_R] PC:  3 DR:  0 SB:  0 RG: [11, 97, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   13 [ 4: INC    ] PC:  4 DR: 11 SB:  0 RG: [11, 97, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   14 [ 5: JMP    ] PC:  5 DR: 11 SB:  0 RG: [12, 97, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   15 [ 1: LOAD_V ] PC:  1 DR: 11 SB:  0 RG: [12, 97, 0, 0] 
+  DEBUG    root:data_path.py:148 input: n
+  DEBUG    root:simulation.py:26 TICK:   17 [ 2: JZ_R   ] PC:  2 DR:  0 SB:  0 RG: [12, 110, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   18 [ 3: STORE_R] PC:  3 DR:  0 SB:  0 RG: [12, 110, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   20 [ 4: INC    ] PC:  4 DR: 12 SB:  0 RG: [12, 110, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   21 [ 5: JMP    ] PC:  5 DR: 12 SB:  0 RG: [13, 110, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   22 [ 1: LOAD_V ] PC:  1 DR: 12 SB:  0 RG: [13, 110, 0, 0] 
+  DEBUG    root:data_path.py:148 input: y
+  DEBUG    root:simulation.py:26 TICK:   24 [ 2: JZ_R   ] PC:  2 DR:  0 SB:  0 RG: [13, 121, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   25 [ 3: STORE_R] PC:  3 DR:  0 SB:  0 RG: [13, 121, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   27 [ 4: INC    ] PC:  4 DR: 13 SB:  0 RG: [13, 121, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   28 [ 5: JMP    ] PC:  5 DR: 13 SB:  0 RG: [14, 121, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   29 [ 1: LOAD_V ] PC:  1 DR: 13 SB:  0 RG: [14, 121, 0, 0] 
+  DEBUG    root:data_path.py:148 input: a
+  DEBUG    root:simulation.py:26 TICK:   31 [ 2: JZ_R   ] PC:  2 DR:  0 SB:  0 RG: [14, 97, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   32 [ 3: STORE_R] PC:  3 DR:  0 SB:  0 RG: [14, 97, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   34 [ 4: INC    ] PC:  4 DR: 14 SB:  0 RG: [14, 97, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   35 [ 5: JMP    ] PC:  5 DR: 14 SB:  0 RG: [15, 97, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   36 [ 1: LOAD_V ] PC:  1 DR: 14 SB:  0 RG: [15, 97, 0, 0] 
+  DEBUG    root:data_path.py:148 input: !
+  DEBUG    root:simulation.py:26 TICK:   38 [ 2: JZ_R   ] PC:  2 DR:  0 SB:  0 RG: [15, 33, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   39 [ 3: STORE_R] PC:  3 DR:  0 SB:  0 RG: [15, 33, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   41 [ 4: INC    ] PC:  4 DR: 15 SB:  0 RG: [15, 33, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   42 [ 5: JMP    ] PC:  5 DR: 15 SB:  0 RG: [16, 33, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   43 [ 1: LOAD_V ] PC:  1 DR: 15 SB:  0 RG: [16, 33, 0, 0] 
+  DEBUG    root:data_path.py:148 input: !
+  DEBUG    root:simulation.py:26 TICK:   45 [ 2: JZ_R   ] PC:  2 DR:  0 SB:  0 RG: [16, 33, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   46 [ 3: STORE_R] PC:  3 DR:  0 SB:  0 RG: [16, 33, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   48 [ 4: INC    ] PC:  4 DR: 16 SB:  0 RG: [16, 33, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   49 [ 5: JMP    ] PC:  5 DR: 16 SB:  0 RG: [17, 33, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   50 [ 1: LOAD_V ] PC:  1 DR: 16 SB:  0 RG: [17, 33, 0, 0] 
+  DEBUG    root:data_path.py:148 input: 
+  DEBUG    root:simulation.py:26 TICK:   52 [ 2: JZ_R   ] PC:  2 DR:  0 SB:  0 RG: [17, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   53 [ 6: MOV    ] PC:  6 DR:  0 SB:  0 RG: [17, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   54 [ 7: LOAD_R ] PC:  7 DR:  0 SB:  0 RG: [2, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   56 [ 8: JZ_R   ] PC:  8 DR:  2 SB:  0 RG: [2, 104, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   57 [ 9: STORE_V] PC:  9 DR:  2 SB:  0 RG: [2, 104, 0, 0] 
+  DEBUG    root:data_path.py:153 output: h << 104
+  DEBUG    root:simulation.py:26 TICK:   59 [10: NEXT   ] PC: 10 DR:  1 SB:  0 RG: [2, 104, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   62 [11: JMP    ] PC: 11 DR:  3 SB:  0 RG: [3, 101, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   63 [ 8: JZ_R   ] PC:  8 DR:  3 SB:  0 RG: [3, 101, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   64 [ 9: STORE_V] PC:  9 DR:  3 SB:  0 RG: [3, 101, 0, 0] 
+  DEBUG    root:data_path.py:153 output: he << 101
+  DEBUG    root:simulation.py:26 TICK:   66 [10: NEXT   ] PC: 10 DR:  1 SB:  0 RG: [3, 101, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   69 [11: JMP    ] PC: 11 DR:  4 SB:  0 RG: [4, 108, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   70 [ 8: JZ_R   ] PC:  8 DR:  4 SB:  0 RG: [4, 108, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   71 [ 9: STORE_V] PC:  9 DR:  4 SB:  0 RG: [4, 108, 0, 0] 
+  DEBUG    root:data_path.py:153 output: hel << 108
+  DEBUG    root:simulation.py:26 TICK:   73 [10: NEXT   ] PC: 10 DR:  1 SB:  0 RG: [4, 108, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   76 [11: JMP    ] PC: 11 DR:  5 SB:  0 RG: [5, 108, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   77 [ 8: JZ_R   ] PC:  8 DR:  5 SB:  0 RG: [5, 108, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   78 [ 9: STORE_V] PC:  9 DR:  5 SB:  0 RG: [5, 108, 0, 0] 
+  DEBUG    root:data_path.py:153 output: hell << 108
+  DEBUG    root:simulation.py:26 TICK:   80 [10: NEXT   ] PC: 10 DR:  1 SB:  0 RG: [5, 108, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   83 [11: JMP    ] PC: 11 DR:  6 SB:  0 RG: [6, 111, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   84 [ 8: JZ_R   ] PC:  8 DR:  6 SB:  0 RG: [6, 111, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   85 [ 9: STORE_V] PC:  9 DR:  6 SB:  0 RG: [6, 111, 0, 0] 
+  DEBUG    root:data_path.py:153 output: hello << 111
+  DEBUG    root:simulation.py:26 TICK:   87 [10: NEXT   ] PC: 10 DR:  1 SB:  0 RG: [6, 111, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   90 [11: JMP    ] PC: 11 DR:  7 SB:  0 RG: [7, 44, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   91 [ 8: JZ_R   ] PC:  8 DR:  7 SB:  0 RG: [7, 44, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   92 [ 9: STORE_V] PC:  9 DR:  7 SB:  0 RG: [7, 44, 0, 0] 
+  DEBUG    root:data_path.py:153 output: hello, << 44
+  DEBUG    root:simulation.py:26 TICK:   94 [10: NEXT   ] PC: 10 DR:  1 SB:  0 RG: [7, 44, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   97 [11: JMP    ] PC: 11 DR:  8 SB:  0 RG: [8, 32, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   98 [ 8: JZ_R   ] PC:  8 DR:  8 SB:  0 RG: [8, 32, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   99 [ 9: STORE_V] PC:  9 DR:  8 SB:  0 RG: [8, 32, 0, 0] 
+  DEBUG    root:data_path.py:153 output: hello,  << 32
+  DEBUG    root:simulation.py:26 TICK:  101 [10: NEXT   ] PC: 10 DR:  1 SB:  0 RG: [8, 32, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  104 [11: JMP    ] PC: 11 DR:  9 SB:  0 RG: [9, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  105 [ 8: JZ_R   ] PC:  8 DR:  9 SB:  0 RG: [9, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  106 [12: MOV    ] PC: 12 DR:  9 SB:  0 RG: [9, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  107 [13: LOAD_R ] PC: 13 DR:  9 SB:  0 RG: [10, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  109 [14: JZ_R   ] PC: 14 DR: 10 SB:  0 RG: [10, 84, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  110 [15: STORE_V] PC: 15 DR: 10 SB:  0 RG: [10, 84, 0, 0] 
+  DEBUG    root:data_path.py:153 output: hello, T << 84
+  DEBUG    root:simulation.py:26 TICK:  112 [16: NEXT   ] PC: 16 DR:  1 SB:  0 RG: [10, 84, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  115 [17: JMP    ] PC: 17 DR: 11 SB:  0 RG: [11, 97, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  116 [14: JZ_R   ] PC: 14 DR: 11 SB:  0 RG: [11, 97, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  117 [15: STORE_V] PC: 15 DR: 11 SB:  0 RG: [11, 97, 0, 0] 
+  DEBUG    root:data_path.py:153 output: hello, Ta << 97
+  DEBUG    root:simulation.py:26 TICK:  119 [16: NEXT   ] PC: 16 DR:  1 SB:  0 RG: [11, 97, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  122 [17: JMP    ] PC: 17 DR: 12 SB:  0 RG: [12, 110, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  123 [14: JZ_R   ] PC: 14 DR: 12 SB:  0 RG: [12, 110, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  124 [15: STORE_V] PC: 15 DR: 12 SB:  0 RG: [12, 110, 0, 0] 
+  DEBUG    root:data_path.py:153 output: hello, Tan << 110
+  DEBUG    root:simulation.py:26 TICK:  126 [16: NEXT   ] PC: 16 DR:  1 SB:  0 RG: [12, 110, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  129 [17: JMP    ] PC: 17 DR: 13 SB:  0 RG: [13, 121, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  130 [14: JZ_R   ] PC: 14 DR: 13 SB:  0 RG: [13, 121, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  131 [15: STORE_V] PC: 15 DR: 13 SB:  0 RG: [13, 121, 0, 0] 
+  DEBUG    root:data_path.py:153 output: hello, Tany << 121
+  DEBUG    root:simulation.py:26 TICK:  133 [16: NEXT   ] PC: 16 DR:  1 SB:  0 RG: [13, 121, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  136 [17: JMP    ] PC: 17 DR: 14 SB:  0 RG: [14, 97, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  137 [14: JZ_R   ] PC: 14 DR: 14 SB:  0 RG: [14, 97, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  138 [15: STORE_V] PC: 15 DR: 14 SB:  0 RG: [14, 97, 0, 0] 
+  DEBUG    root:data_path.py:153 output: hello, Tanya << 97
+  DEBUG    root:simulation.py:26 TICK:  140 [16: NEXT   ] PC: 16 DR:  1 SB:  0 RG: [14, 97, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  143 [17: JMP    ] PC: 17 DR: 15 SB:  0 RG: [15, 33, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  144 [14: JZ_R   ] PC: 14 DR: 15 SB:  0 RG: [15, 33, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  145 [15: STORE_V] PC: 15 DR: 15 SB:  0 RG: [15, 33, 0, 0] 
+  DEBUG    root:data_path.py:153 output: hello, Tanya! << 33
+  DEBUG    root:simulation.py:26 TICK:  147 [16: NEXT   ] PC: 16 DR:  1 SB:  0 RG: [15, 33, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  150 [17: JMP    ] PC: 17 DR: 16 SB:  0 RG: [16, 33, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  151 [14: JZ_R   ] PC: 14 DR: 16 SB:  0 RG: [16, 33, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  152 [15: STORE_V] PC: 15 DR: 16 SB:  0 RG: [16, 33, 0, 0] 
+  DEBUG    root:data_path.py:153 output: hello, Tanya!! << 33
+  DEBUG    root:simulation.py:26 TICK:  154 [16: NEXT   ] PC: 16 DR:  1 SB:  0 RG: [16, 33, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  157 [17: JMP    ] PC: 17 DR: 17 SB:  0 RG: [17, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  158 [14: JZ_R   ] PC: 14 DR: 17 SB:  0 RG: [17, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  159 [18: HLT    ] PC: 18 DR: 17 SB:  0 RG: [17, 0, 0, 0] 
+  INFO     root:simulation.py:42 output_buffer: hello, Tanya!!
+  INFO     root:simulation.py:68 End simulation

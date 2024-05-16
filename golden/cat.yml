@@ -1,0 +1,274 @@
+in_source: |-
+  .code
+
+  main_loop:
+      INPUT r2
+      JZ_R end r2
+      OUTPUT r2
+      JMP main_loop
+
+  end:
+      HLT
+
+in_stdin: |-
+  Hello, World! This is a test file for the cat command.
+out_stdout: |
+  LoC: 10 Instr: 8
+  ============================================================
+  Hello, World! This is a test file for the cat command.
+  Instructions: 219 Ticks: 327
+out_code: |-
+  [2,
+   {"index": 0, "opcode": "number", "args": [1234]},
+   {"index": 1, "opcode": "number", "args": [1234]},
+   {"index": 0, "opcode": "load_v", "args": [1, 0]},
+   {"index": 1, "opcode": "jz_r", "args": [4, 1]},
+   {"index": 2, "opcode": "store_v", "args": [1, 1]},
+   {"index": 3, "opcode": "jmp", "args": [0]},
+   {"index": 4, "opcode": "hlt", "args": []}]
+out_log: |
+  INFO     root:simulation.py:60 Start simulation
+  DEBUG    root:data_path.py:148 input: H
+  DEBUG    root:simulation.py:26 TICK:    2 [ 1: JZ_R   ] PC:  1 DR:  0 SB:  0 RG: [0, 72, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:    3 [ 2: STORE_V] PC:  2 DR:  0 SB:  0 RG: [0, 72, 0, 0] 
+  DEBUG    root:data_path.py:153 output: H << 72
+  DEBUG    root:simulation.py:26 TICK:    5 [ 3: JMP    ] PC:  3 DR:  1 SB:  0 RG: [0, 72, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:    6 [ 0: LOAD_V ] PC:  0 DR:  1 SB:  0 RG: [0, 72, 0, 0] 
+  DEBUG    root:data_path.py:148 input: e
+  DEBUG    root:simulation.py:26 TICK:    8 [ 1: JZ_R   ] PC:  1 DR:  0 SB:  0 RG: [0, 101, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:    9 [ 2: STORE_V] PC:  2 DR:  0 SB:  0 RG: [0, 101, 0, 0] 
+  DEBUG    root:data_path.py:153 output: He << 101
+  DEBUG    root:simulation.py:26 TICK:   11 [ 3: JMP    ] PC:  3 DR:  1 SB:  0 RG: [0, 101, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   12 [ 0: LOAD_V ] PC:  0 DR:  1 SB:  0 RG: [0, 101, 0, 0] 
+  DEBUG    root:data_path.py:148 input: l
+  DEBUG    root:simulation.py:26 TICK:   14 [ 1: JZ_R   ] PC:  1 DR:  0 SB:  0 RG: [0, 108, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   15 [ 2: STORE_V] PC:  2 DR:  0 SB:  0 RG: [0, 108, 0, 0] 
+  DEBUG    root:data_path.py:153 output: Hel << 108
+  DEBUG    root:simulation.py:26 TICK:   17 [ 3: JMP    ] PC:  3 DR:  1 SB:  0 RG: [0, 108, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   18 [ 0: LOAD_V ] PC:  0 DR:  1 SB:  0 RG: [0, 108, 0, 0] 
+  DEBUG    root:data_path.py:148 input: l
+  DEBUG    root:simulation.py:26 TICK:   20 [ 1: JZ_R   ] PC:  1 DR:  0 SB:  0 RG: [0, 108, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   21 [ 2: STORE_V] PC:  2 DR:  0 SB:  0 RG: [0, 108, 0, 0] 
+  DEBUG    root:data_path.py:153 output: Hell << 108
+  DEBUG    root:simulation.py:26 TICK:   23 [ 3: JMP    ] PC:  3 DR:  1 SB:  0 RG: [0, 108, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   24 [ 0: LOAD_V ] PC:  0 DR:  1 SB:  0 RG: [0, 108, 0, 0] 
+  DEBUG    root:data_path.py:148 input: o
+  DEBUG    root:simulation.py:26 TICK:   26 [ 1: JZ_R   ] PC:  1 DR:  0 SB:  0 RG: [0, 111, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   27 [ 2: STORE_V] PC:  2 DR:  0 SB:  0 RG: [0, 111, 0, 0] 
+  DEBUG    root:data_path.py:153 output: Hello << 111
+  DEBUG    root:simulation.py:26 TICK:   29 [ 3: JMP    ] PC:  3 DR:  1 SB:  0 RG: [0, 111, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   30 [ 0: LOAD_V ] PC:  0 DR:  1 SB:  0 RG: [0, 111, 0, 0] 
+  DEBUG    root:data_path.py:148 input: ,
+  DEBUG    root:simulation.py:26 TICK:   32 [ 1: JZ_R   ] PC:  1 DR:  0 SB:  0 RG: [0, 44, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   33 [ 2: STORE_V] PC:  2 DR:  0 SB:  0 RG: [0, 44, 0, 0] 
+  DEBUG    root:data_path.py:153 output: Hello, << 44
+  DEBUG    root:simulation.py:26 TICK:   35 [ 3: JMP    ] PC:  3 DR:  1 SB:  0 RG: [0, 44, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   36 [ 0: LOAD_V ] PC:  0 DR:  1 SB:  0 RG: [0, 44, 0, 0] 
+  DEBUG    root:data_path.py:148 input:  
+  DEBUG    root:simulation.py:26 TICK:   38 [ 1: JZ_R   ] PC:  1 DR:  0 SB:  0 RG: [0, 32, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   39 [ 2: STORE_V] PC:  2 DR:  0 SB:  0 RG: [0, 32, 0, 0] 
+  DEBUG    root:data_path.py:153 output: Hello,  << 32
+  DEBUG    root:simulation.py:26 TICK:   41 [ 3: JMP    ] PC:  3 DR:  1 SB:  0 RG: [0, 32, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   42 [ 0: LOAD_V ] PC:  0 DR:  1 SB:  0 RG: [0, 32, 0, 0] 
+  DEBUG    root:data_path.py:148 input: W
+  DEBUG    root:simulation.py:26 TICK:   44 [ 1: JZ_R   ] PC:  1 DR:  0 SB:  0 RG: [0, 87, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   45 [ 2: STORE_V] PC:  2 DR:  0 SB:  0 RG: [0, 87, 0, 0] 
+  DEBUG    root:data_path.py:153 output: Hello, W << 87
+  DEBUG    root:simulation.py:26 TICK:   47 [ 3: JMP    ] PC:  3 DR:  1 SB:  0 RG: [0, 87, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   48 [ 0: LOAD_V ] PC:  0 DR:  1 SB:  0 RG: [0, 87, 0, 0] 
+  DEBUG    root:data_path.py:148 input: o
+  DEBUG    root:simulation.py:26 TICK:   50 [ 1: JZ_R   ] PC:  1 DR:  0 SB:  0 RG: [0, 111, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   51 [ 2: STORE_V] PC:  2 DR:  0 SB:  0 RG: [0, 111, 0, 0] 
+  DEBUG    root:data_path.py:153 output: Hello, Wo << 111
+  DEBUG    root:simulation.py:26 TICK:   53 [ 3: JMP    ] PC:  3 DR:  1 SB:  0 RG: [0, 111, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   54 [ 0: LOAD_V ] PC:  0 DR:  1 SB:  0 RG: [0, 111, 0, 0] 
+  DEBUG    root:data_path.py:148 input: r
+  DEBUG    root:simulation.py:26 TICK:   56 [ 1: JZ_R   ] PC:  1 DR:  0 SB:  0 RG: [0, 114, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   57 [ 2: STORE_V] PC:  2 DR:  0 SB:  0 RG: [0, 114, 0, 0] 
+  DEBUG    root:data_path.py:153 output: Hello, Wor << 114
+  DEBUG    root:simulation.py:26 TICK:   59 [ 3: JMP    ] PC:  3 DR:  1 SB:  0 RG: [0, 114, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   60 [ 0: LOAD_V ] PC:  0 DR:  1 SB:  0 RG: [0, 114, 0, 0] 
+  DEBUG    root:data_path.py:148 input: l
+  DEBUG    root:simulation.py:26 TICK:   62 [ 1: JZ_R   ] PC:  1 DR:  0 SB:  0 RG: [0, 108, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   63 [ 2: STORE_V] PC:  2 DR:  0 SB:  0 RG: [0, 108, 0, 0] 
+  DEBUG    root:data_path.py:153 output: Hello, Worl << 108
+  DEBUG    root:simulation.py:26 TICK:   65 [ 3: JMP    ] PC:  3 DR:  1 SB:  0 RG: [0, 108, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   66 [ 0: LOAD_V ] PC:  0 DR:  1 SB:  0 RG: [0, 108, 0, 0] 
+  DEBUG    root:data_path.py:148 input: d
+  DEBUG    root:simulation.py:26 TICK:   68 [ 1: JZ_R   ] PC:  1 DR:  0 SB:  0 RG: [0, 100, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   69 [ 2: STORE_V] PC:  2 DR:  0 SB:  0 RG: [0, 100, 0, 0] 
+  DEBUG    root:data_path.py:153 output: Hello, World << 100
+  DEBUG    root:simulation.py:26 TICK:   71 [ 3: JMP    ] PC:  3 DR:  1 SB:  0 RG: [0, 100, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   72 [ 0: LOAD_V ] PC:  0 DR:  1 SB:  0 RG: [0, 100, 0, 0] 
+  DEBUG    root:data_path.py:148 input: !
+  DEBUG    root:simulation.py:26 TICK:   74 [ 1: JZ_R   ] PC:  1 DR:  0 SB:  0 RG: [0, 33, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   75 [ 2: STORE_V] PC:  2 DR:  0 SB:  0 RG: [0, 33, 0, 0] 
+  DEBUG    root:data_path.py:153 output: Hello, World! << 33
+  DEBUG    root:simulation.py:26 TICK:   77 [ 3: JMP    ] PC:  3 DR:  1 SB:  0 RG: [0, 33, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   78 [ 0: LOAD_V ] PC:  0 DR:  1 SB:  0 RG: [0, 33, 0, 0] 
+  DEBUG    root:data_path.py:148 input:  
+  DEBUG    root:simulation.py:26 TICK:   80 [ 1: JZ_R   ] PC:  1 DR:  0 SB:  0 RG: [0, 32, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   81 [ 2: STORE_V] PC:  2 DR:  0 SB:  0 RG: [0, 32, 0, 0] 
+  DEBUG    root:data_path.py:153 output: Hello, World!  << 32
+  DEBUG    root:simulation.py:26 TICK:   83 [ 3: JMP    ] PC:  3 DR:  1 SB:  0 RG: [0, 32, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   84 [ 0: LOAD_V ] PC:  0 DR:  1 SB:  0 RG: [0, 32, 0, 0] 
+  DEBUG    root:data_path.py:148 input: T
+  DEBUG    root:simulation.py:26 TICK:   86 [ 1: JZ_R   ] PC:  1 DR:  0 SB:  0 RG: [0, 84, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   87 [ 2: STORE_V] PC:  2 DR:  0 SB:  0 RG: [0, 84, 0, 0] 
+  DEBUG    root:data_path.py:153 output: Hello, World! T << 84
+  DEBUG    root:simulation.py:26 TICK:   89 [ 3: JMP    ] PC:  3 DR:  1 SB:  0 RG: [0, 84, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   90 [ 0: LOAD_V ] PC:  0 DR:  1 SB:  0 RG: [0, 84, 0, 0] 
+  DEBUG    root:data_path.py:148 input: h
+  DEBUG    root:simulation.py:26 TICK:   92 [ 1: JZ_R   ] PC:  1 DR:  0 SB:  0 RG: [0, 104, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   93 [ 2: STORE_V] PC:  2 DR:  0 SB:  0 RG: [0, 104, 0, 0] 
+  DEBUG    root:data_path.py:153 output: Hello, World! Th << 104
+  DEBUG    root:simulation.py:26 TICK:   95 [ 3: JMP    ] PC:  3 DR:  1 SB:  0 RG: [0, 104, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   96 [ 0: LOAD_V ] PC:  0 DR:  1 SB:  0 RG: [0, 104, 0, 0] 
+  DEBUG    root:data_path.py:148 input: i
+  DEBUG    root:simulation.py:26 TICK:   98 [ 1: JZ_R   ] PC:  1 DR:  0 SB:  0 RG: [0, 105, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   99 [ 2: STORE_V] PC:  2 DR:  0 SB:  0 RG: [0, 105, 0, 0] 
+  DEBUG    root:data_path.py:153 output: Hello, World! Thi << 105
+  DEBUG    root:simulation.py:26 TICK:  101 [ 3: JMP    ] PC:  3 DR:  1 SB:  0 RG: [0, 105, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  102 [ 0: LOAD_V ] PC:  0 DR:  1 SB:  0 RG: [0, 105, 0, 0] 
+  DEBUG    root:data_path.py:148 input: s
+  DEBUG    root:simulation.py:26 TICK:  104 [ 1: JZ_R   ] PC:  1 DR:  0 SB:  0 RG: [0, 115, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  105 [ 2: STORE_V] PC:  2 DR:  0 SB:  0 RG: [0, 115, 0, 0] 
+  DEBUG    root:data_path.py:153 output: Hello, World! This << 115
+  DEBUG    root:simulation.py:26 TICK:  107 [ 3: JMP    ] PC:  3 DR:  1 SB:  0 RG: [0, 115, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  108 [ 0: LOAD_V ] PC:  0 DR:  1 SB:  0 RG: [0, 115, 0, 0] 
+  DEBUG    root:data_path.py:148 input:  
+  DEBUG    root:simulation.py:26 TICK:  110 [ 1: JZ_R   ] PC:  1 DR:  0 SB:  0 RG: [0, 32, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  111 [ 2: STORE_V] PC:  2 DR:  0 SB:  0 RG: [0, 32, 0, 0] 
+  DEBUG    root:data_path.py:153 output: Hello, World! This  << 32
+  DEBUG    root:simulation.py:26 TICK:  113 [ 3: JMP    ] PC:  3 DR:  1 SB:  0 RG: [0, 32, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  114 [ 0: LOAD_V ] PC:  0 DR:  1 SB:  0 RG: [0, 32, 0, 0] 
+  DEBUG    root:data_path.py:148 input: i
+  DEBUG    root:simulation.py:26 TICK:  116 [ 1: JZ_R   ] PC:  1 DR:  0 SB:  0 RG: [0, 105, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  117 [ 2: STORE_V] PC:  2 DR:  0 SB:  0 RG: [0, 105, 0, 0] 
+  DEBUG    root:data_path.py:153 output: Hello, World! This i << 105
+  DEBUG    root:simulation.py:26 TICK:  119 [ 3: JMP    ] PC:  3 DR:  1 SB:  0 RG: [0, 105, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  120 [ 0: LOAD_V ] PC:  0 DR:  1 SB:  0 RG: [0, 105, 0, 0] 
+  DEBUG    root:data_path.py:148 input: s
+  DEBUG    root:simulation.py:26 TICK:  122 [ 1: JZ_R   ] PC:  1 DR:  0 SB:  0 RG: [0, 115, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  123 [ 2: STORE_V] PC:  2 DR:  0 SB:  0 RG: [0, 115, 0, 0] 
+  DEBUG    root:data_path.py:153 output: Hello, World! This is << 115
+  DEBUG    root:simulation.py:26 TICK:  125 [ 3: JMP    ] PC:  3 DR:  1 SB:  0 RG: [0, 115, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  126 [ 0: LOAD_V ] PC:  0 DR:  1 SB:  0 RG: [0, 115, 0, 0] 
+  DEBUG    root:data_path.py:148 input:  
+  DEBUG    root:simulation.py:26 TICK:  128 [ 1: JZ_R   ] PC:  1 DR:  0 SB:  0 RG: [0, 32, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  129 [ 2: STORE_V] PC:  2 DR:  0 SB:  0 RG: [0, 32, 0, 0] 
+  DEBUG    root:data_path.py:153 output: Hello, World! This is  << 32
+  DEBUG    root:simulation.py:26 TICK:  131 [ 3: JMP    ] PC:  3 DR:  1 SB:  0 RG: [0, 32, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  132 [ 0: LOAD_V ] PC:  0 DR:  1 SB:  0 RG: [0, 32, 0, 0] 
+  DEBUG    root:data_path.py:148 input: a
+  DEBUG    root:simulation.py:26 TICK:  134 [ 1: JZ_R   ] PC:  1 DR:  0 SB:  0 RG: [0, 97, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  135 [ 2: STORE_V] PC:  2 DR:  0 SB:  0 RG: [0, 97, 0, 0] 
+  DEBUG    root:data_path.py:153 output: Hello, World! This is a << 97
+  DEBUG    root:simulation.py:26 TICK:  137 [ 3: JMP    ] PC:  3 DR:  1 SB:  0 RG: [0, 97, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  138 [ 0: LOAD_V ] PC:  0 DR:  1 SB:  0 RG: [0, 97, 0, 0] 
+  DEBUG    root:data_path.py:148 input:  
+  DEBUG    root:simulation.py:26 TICK:  140 [ 1: JZ_R   ] PC:  1 DR:  0 SB:  0 RG: [0, 32, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  141 [ 2: STORE_V] PC:  2 DR:  0 SB:  0 RG: [0, 32, 0, 0] 
+  DEBUG    root:data_path.py:153 output: Hello, World! This is a  << 32
+  DEBUG    root:simulation.py:26 TICK:  143 [ 3: JMP    ] PC:  3 DR:  1 SB:  0 RG: [0, 32, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  144 [ 0: LOAD_V ] PC:  0 DR:  1 SB:  0 RG: [0, 32, 0, 0] 
+  DEBUG    root:data_path.py:148 input: t
+  DEBUG    root:simulation.py:26 TICK:  146 [ 1: JZ_R   ] PC:  1 DR:  0 SB:  0 RG: [0, 116, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  147 [ 2: STORE_V] PC:  2 DR:  0 SB:  0 RG: [0, 116, 0, 0] 
+  DEBUG    root:data_path.py:153 output: Hello, World! This is a t << 116
+  DEBUG    root:simulation.py:26 TICK:  149 [ 3: JMP    ] PC:  3 DR:  1 SB:  0 RG: [0, 116, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  150 [ 0: LOAD_V ] PC:  0 DR:  1 SB:  0 RG: [0, 116, 0, 0] 
+  DEBUG    root:data_path.py:148 input: e
+  DEBUG    root:simulation.py:26 TICK:  152 [ 1: JZ_R   ] PC:  1 DR:  0 SB:  0 RG: [0, 101, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  153 [ 2: STORE_V] PC:  2 DR:  0 SB:  0 RG: [0, 101, 0, 0] 
+  DEBUG    root:data_path.py:153 output: Hello, World! This is a te << 101
+  DEBUG    root:simulation.py:26 TICK:  155 [ 3: JMP    ] PC:  3 DR:  1 SB:  0 RG: [0, 101, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  156 [ 0: LOAD_V ] PC:  0 DR:  1 SB:  0 RG: [0, 101, 0, 0] 
+  DEBUG    root:data_path.py:148 input: s
+  DEBUG    root:simulation.py:26 TICK:  158 [ 1: JZ_R   ] PC:  1 DR:  0 SB:  0 RG: [0, 115, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  159 [ 2: STORE_V] PC:  2 DR:  0 SB:  0 RG: [0, 115, 0, 0] 
+  DEBUG    root:data_path.py:153 output: Hello, World! This is a tes << 115
+  DEBUG    root:simulation.py:26 TICK:  161 [ 3: JMP    ] PC:  3 DR:  1 SB:  0 RG: [0, 115, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  162 [ 0: LOAD_V ] PC:  0 DR:  1 SB:  0 RG: [0, 115, 0, 0] 
+  DEBUG    root:data_path.py:148 input: t
+  DEBUG    root:simulation.py:26 TICK:  164 [ 1: JZ_R   ] PC:  1 DR:  0 SB:  0 RG: [0, 116, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  165 [ 2: STORE_V] PC:  2 DR:  0 SB:  0 RG: [0, 116, 0, 0] 
+  DEBUG    root:data_path.py:153 output: Hello, World! This is a test << 116
+  DEBUG    root:simulation.py:26 TICK:  167 [ 3: JMP    ] PC:  3 DR:  1 SB:  0 RG: [0, 116, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  168 [ 0: LOAD_V ] PC:  0 DR:  1 SB:  0 RG: [0, 116, 0, 0] 
+  DEBUG    root:data_path.py:148 input:  
+  DEBUG    root:simulation.py:26 TICK:  170 [ 1: JZ_R   ] PC:  1 DR:  0 SB:  0 RG: [0, 32, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  171 [ 2: STORE_V] PC:  2 DR:  0 SB:  0 RG: [0, 32, 0, 0] 
+  DEBUG    root:data_path.py:153 output: Hello, World! This is a test  << 32
+  DEBUG    root:simulation.py:26 TICK:  173 [ 3: JMP    ] PC:  3 DR:  1 SB:  0 RG: [0, 32, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  174 [ 0: LOAD_V ] PC:  0 DR:  1 SB:  0 RG: [0, 32, 0, 0] 
+  DEBUG    root:data_path.py:148 input: f
+  DEBUG    root:simulation.py:26 TICK:  176 [ 1: JZ_R   ] PC:  1 DR:  0 SB:  0 RG: [0, 102, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  177 [ 2: STORE_V] PC:  2 DR:  0 SB:  0 RG: [0, 102, 0, 0] 
+  DEBUG    root:data_path.py:153 output: Hello, World! This is a test f << 102
+  DEBUG    root:simulation.py:26 TICK:  179 [ 3: JMP    ] PC:  3 DR:  1 SB:  0 RG: [0, 102, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  180 [ 0: LOAD_V ] PC:  0 DR:  1 SB:  0 RG: [0, 102, 0, 0] 
+  DEBUG    root:data_path.py:148 input: i
+  DEBUG    root:simulation.py:26 TICK:  182 [ 1: JZ_R   ] PC:  1 DR:  0 SB:  0 RG: [0, 105, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  183 [ 2: STORE_V] PC:  2 DR:  0 SB:  0 RG: [0, 105, 0, 0] 
+  DEBUG    root:data_path.py:153 output: Hello, World! This is a test fi << 105
+  DEBUG    root:simulation.py:26 TICK:  185 [ 3: JMP    ] PC:  3 DR:  1 SB:  0 RG: [0, 105, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  186 [ 0: LOAD_V ] PC:  0 DR:  1 SB:  0 RG: [0, 105, 0, 0] 
+  DEBUG    root:data_path.py:148 input: l
+  DEBUG    root:simulation.py:26 TICK:  188 [ 1: JZ_R   ] PC:  1 DR:  0 SB:  0 RG: [0, 108, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  189 [ 2: STORE_V] PC:  2 DR:  0 SB:  0 RG: [0, 108, 0, 0] 
+  DEBUG    root:data_path.py:153 output: Hello, World! This is a test fil << 108
+  DEBUG    root:simulation.py:26 TICK:  191 [ 3: JMP    ] PC:  3 DR:  1 SB:  0 RG: [0, 108, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  192 [ 0: LOAD_V ] PC:  0 DR:  1 SB:  0 RG: [0, 108, 0, 0] 
+  DEBUG    root:data_path.py:148 input: e
+  DEBUG    root:simulation.py:26 TICK:  194 [ 1: JZ_R   ] PC:  1 DR:  0 SB:  0 RG: [0, 101, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  195 [ 2: STORE_V] PC:  2 DR:  0 SB:  0 RG: [0, 101, 0, 0] 
+  DEBUG    root:data_path.py:153 output: Hello, World! This is a test file << 101
+  DEBUG    root:simulation.py:26 TICK:  197 [ 3: JMP    ] PC:  3 DR:  1 SB:  0 RG: [0, 101, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:  198 [ 0: LOAD_V ] PC:  0 DR:  1 SB:  0 RG: [0, 101, 0, 0] 
+  DEBUG    root:data_path.py:148 input:  
+  WARNING  root:simulation.py:28 Debug limit exceeded!
+  DEBUG    root:data_path.py:153 output: Hello, World! This is a test file  << 32
+  DEBUG    root:data_path.py:148 input: f
+  DEBUG    root:data_path.py:153 output: Hello, World! This is a test file f << 102
+  DEBUG    root:data_path.py:148 input: o
+  DEBUG    root:data_path.py:153 output: Hello, World! This is a test file fo << 111
+  DEBUG    root:data_path.py:148 input: r
+  DEBUG    root:data_path.py:153 output: Hello, World! This is a test file for << 114
+  DEBUG    root:data_path.py:148 input:  
+  DEBUG    root:data_path.py:153 output: Hello, World! This is a test file for  << 32
+  DEBUG    root:data_path.py:148 input: t
+  DEBUG    root:data_path.py:153 output: Hello, World! This is a test file for t << 116
+  DEBUG    root:data_path.py:148 input: h
+  DEBUG    root:data_path.py:153 output: Hello, World! This is a test file for th << 104
+  DEBUG    root:data_path.py:148 input: e
+  DEBUG    root:data_path.py:153 output: Hello, World! This is a test file for the << 101
+  DEBUG    root:data_path.py:148 input:  
+  DEBUG    root:data_path.py:153 output: Hello, World! This is a test file for the  << 32
+  DEBUG    root:data_path.py:148 input: c
+  DEBUG    root:data_path.py:153 output: Hello, World! This is a test file for the c << 99
+  DEBUG    root:data_path.py:148 input: a
+  DEBUG    root:data_path.py:153 output: Hello, World! This is a test file for the ca << 97
+  DEBUG    root:data_path.py:148 input: t
+  DEBUG    root:data_path.py:153 output: Hello, World! This is a test file for the cat << 116
+  DEBUG    root:data_path.py:148 input:  
+  DEBUG    root:data_path.py:153 output: Hello, World! This is a test file for the cat  << 32
+  DEBUG    root:data_path.py:148 input: c
+  DEBUG    root:data_path.py:153 output: Hello, World! This is a test file for the cat c << 99
+  DEBUG    root:data_path.py:148 input: o
+  DEBUG    root:data_path.py:153 output: Hello, World! This is a test file for the cat co << 111
+  DEBUG    root:data_path.py:148 input: m
+  DEBUG    root:data_path.py:153 output: Hello, World! This is a test file for the cat com << 109
+  DEBUG    root:data_path.py:148 input: m
+  DEBUG    root:data_path.py:153 output: Hello, World! This is a test file for the cat comm << 109
+  DEBUG    root:data_path.py:148 input: a
+  DEBUG    root:data_path.py:153 output: Hello, World! This is a test file for the cat comma << 97
+  DEBUG    root:data_path.py:148 input: n
+  DEBUG    root:data_path.py:153 output: Hello, World! This is a test file for the cat comman << 110
+  DEBUG    root:data_path.py:148 input: d
+  DEBUG    root:data_path.py:153 output: Hello, World! This is a test file for the cat command << 100
+  DEBUG    root:data_path.py:148 input: .
+  DEBUG    root:data_path.py:153 output: Hello, World! This is a test file for the cat command. << 46
+  DEBUG    root:data_path.py:148 input: 
+  INFO     root:simulation.py:42 output_buffer: Hello, World! This is a test file for the cat command.
+  INFO     root:simulation.py:68 End simulation
