@@ -20,7 +20,7 @@ out_stdout: |
   LoC: 15 Instr: 22
   ============================================================
   hello world
-  Instructions: 48 Ticks: 81
+  Instructions: 48 Ticks: 93
 out_code: |-
   [14,
    {"index": 0, "opcode": "number", "args": [1234]},
@@ -48,61 +48,61 @@ out_log: |
   INFO     root:simulation.py:60 Start simulation
   DEBUG    root:simulation.py:26 TICK:    1 [ 1: LOAD_R ] PC:  1 DR:  0 SB:  0 RG: [2, 0, 0, 0] 
   DEBUG    root:simulation.py:26 TICK:    3 [ 2: JZ_R   ] PC:  2 DR:  2 SB:  0 RG: [2, 104, 0, 0] 
-  DEBUG    root:simulation.py:26 TICK:    4 [ 3: STORE_V] PC:  3 DR:  2 SB:  0 RG: [2, 104, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:    5 [ 3: STORE_V] PC:  3 DR:  2 SB:  0 RG: [2, 104, 0, 0] 
   DEBUG    root:data_path.py:153 output: h << 104
-  DEBUG    root:simulation.py:26 TICK:    6 [ 4: NEXT   ] PC:  4 DR:  1 SB:  0 RG: [2, 104, 0, 0] 
-  DEBUG    root:simulation.py:26 TICK:    9 [ 5: JMP    ] PC:  5 DR:  3 SB:  0 RG: [3, 101, 0, 0] 
-  DEBUG    root:simulation.py:26 TICK:   10 [ 2: JZ_R   ] PC:  2 DR:  3 SB:  0 RG: [3, 101, 0, 0] 
-  DEBUG    root:simulation.py:26 TICK:   11 [ 3: STORE_V] PC:  3 DR:  3 SB:  0 RG: [3, 101, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:    7 [ 4: NEXT   ] PC:  4 DR:  1 SB:  0 RG: [2, 104, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   10 [ 5: JMP    ] PC:  5 DR:  3 SB:  0 RG: [3, 101, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   11 [ 2: JZ_R   ] PC:  2 DR:  3 SB:  0 RG: [3, 101, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   13 [ 3: STORE_V] PC:  3 DR:  3 SB:  0 RG: [3, 101, 0, 0] 
   DEBUG    root:data_path.py:153 output: he << 101
-  DEBUG    root:simulation.py:26 TICK:   13 [ 4: NEXT   ] PC:  4 DR:  1 SB:  0 RG: [3, 101, 0, 0] 
-  DEBUG    root:simulation.py:26 TICK:   16 [ 5: JMP    ] PC:  5 DR:  4 SB:  0 RG: [4, 108, 0, 0] 
-  DEBUG    root:simulation.py:26 TICK:   17 [ 2: JZ_R   ] PC:  2 DR:  4 SB:  0 RG: [4, 108, 0, 0] 
-  DEBUG    root:simulation.py:26 TICK:   18 [ 3: STORE_V] PC:  3 DR:  4 SB:  0 RG: [4, 108, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   15 [ 4: NEXT   ] PC:  4 DR:  1 SB:  0 RG: [3, 101, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   18 [ 5: JMP    ] PC:  5 DR:  4 SB:  0 RG: [4, 108, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   19 [ 2: JZ_R   ] PC:  2 DR:  4 SB:  0 RG: [4, 108, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   21 [ 3: STORE_V] PC:  3 DR:  4 SB:  0 RG: [4, 108, 0, 0] 
   DEBUG    root:data_path.py:153 output: hel << 108
-  DEBUG    root:simulation.py:26 TICK:   20 [ 4: NEXT   ] PC:  4 DR:  1 SB:  0 RG: [4, 108, 0, 0] 
-  DEBUG    root:simulation.py:26 TICK:   23 [ 5: JMP    ] PC:  5 DR:  5 SB:  0 RG: [5, 108, 0, 0] 
-  DEBUG    root:simulation.py:26 TICK:   24 [ 2: JZ_R   ] PC:  2 DR:  5 SB:  0 RG: [5, 108, 0, 0] 
-  DEBUG    root:simulation.py:26 TICK:   25 [ 3: STORE_V] PC:  3 DR:  5 SB:  0 RG: [5, 108, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   23 [ 4: NEXT   ] PC:  4 DR:  1 SB:  0 RG: [4, 108, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   26 [ 5: JMP    ] PC:  5 DR:  5 SB:  0 RG: [5, 108, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   27 [ 2: JZ_R   ] PC:  2 DR:  5 SB:  0 RG: [5, 108, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   29 [ 3: STORE_V] PC:  3 DR:  5 SB:  0 RG: [5, 108, 0, 0] 
   DEBUG    root:data_path.py:153 output: hell << 108
-  DEBUG    root:simulation.py:26 TICK:   27 [ 4: NEXT   ] PC:  4 DR:  1 SB:  0 RG: [5, 108, 0, 0] 
-  DEBUG    root:simulation.py:26 TICK:   30 [ 5: JMP    ] PC:  5 DR:  6 SB:  0 RG: [6, 111, 0, 0] 
-  DEBUG    root:simulation.py:26 TICK:   31 [ 2: JZ_R   ] PC:  2 DR:  6 SB:  0 RG: [6, 111, 0, 0] 
-  DEBUG    root:simulation.py:26 TICK:   32 [ 3: STORE_V] PC:  3 DR:  6 SB:  0 RG: [6, 111, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   31 [ 4: NEXT   ] PC:  4 DR:  1 SB:  0 RG: [5, 108, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   34 [ 5: JMP    ] PC:  5 DR:  6 SB:  0 RG: [6, 111, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   35 [ 2: JZ_R   ] PC:  2 DR:  6 SB:  0 RG: [6, 111, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   37 [ 3: STORE_V] PC:  3 DR:  6 SB:  0 RG: [6, 111, 0, 0] 
   DEBUG    root:data_path.py:153 output: hello << 111
-  DEBUG    root:simulation.py:26 TICK:   34 [ 4: NEXT   ] PC:  4 DR:  1 SB:  0 RG: [6, 111, 0, 0] 
-  DEBUG    root:simulation.py:26 TICK:   37 [ 5: JMP    ] PC:  5 DR:  7 SB:  0 RG: [7, 32, 0, 0] 
-  DEBUG    root:simulation.py:26 TICK:   38 [ 2: JZ_R   ] PC:  2 DR:  7 SB:  0 RG: [7, 32, 0, 0] 
-  DEBUG    root:simulation.py:26 TICK:   39 [ 3: STORE_V] PC:  3 DR:  7 SB:  0 RG: [7, 32, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   39 [ 4: NEXT   ] PC:  4 DR:  1 SB:  0 RG: [6, 111, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   42 [ 5: JMP    ] PC:  5 DR:  7 SB:  0 RG: [7, 32, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   43 [ 2: JZ_R   ] PC:  2 DR:  7 SB:  0 RG: [7, 32, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   45 [ 3: STORE_V] PC:  3 DR:  7 SB:  0 RG: [7, 32, 0, 0] 
   DEBUG    root:data_path.py:153 output: hello  << 32
-  DEBUG    root:simulation.py:26 TICK:   41 [ 4: NEXT   ] PC:  4 DR:  1 SB:  0 RG: [7, 32, 0, 0] 
-  DEBUG    root:simulation.py:26 TICK:   44 [ 5: JMP    ] PC:  5 DR:  8 SB:  0 RG: [8, 119, 0, 0] 
-  DEBUG    root:simulation.py:26 TICK:   45 [ 2: JZ_R   ] PC:  2 DR:  8 SB:  0 RG: [8, 119, 0, 0] 
-  DEBUG    root:simulation.py:26 TICK:   46 [ 3: STORE_V] PC:  3 DR:  8 SB:  0 RG: [8, 119, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   47 [ 4: NEXT   ] PC:  4 DR:  1 SB:  0 RG: [7, 32, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   50 [ 5: JMP    ] PC:  5 DR:  8 SB:  0 RG: [8, 119, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   51 [ 2: JZ_R   ] PC:  2 DR:  8 SB:  0 RG: [8, 119, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   53 [ 3: STORE_V] PC:  3 DR:  8 SB:  0 RG: [8, 119, 0, 0] 
   DEBUG    root:data_path.py:153 output: hello w << 119
-  DEBUG    root:simulation.py:26 TICK:   48 [ 4: NEXT   ] PC:  4 DR:  1 SB:  0 RG: [8, 119, 0, 0] 
-  DEBUG    root:simulation.py:26 TICK:   51 [ 5: JMP    ] PC:  5 DR:  9 SB:  0 RG: [9, 111, 0, 0] 
-  DEBUG    root:simulation.py:26 TICK:   52 [ 2: JZ_R   ] PC:  2 DR:  9 SB:  0 RG: [9, 111, 0, 0] 
-  DEBUG    root:simulation.py:26 TICK:   53 [ 3: STORE_V] PC:  3 DR:  9 SB:  0 RG: [9, 111, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   55 [ 4: NEXT   ] PC:  4 DR:  1 SB:  0 RG: [8, 119, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   58 [ 5: JMP    ] PC:  5 DR:  9 SB:  0 RG: [9, 111, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   59 [ 2: JZ_R   ] PC:  2 DR:  9 SB:  0 RG: [9, 111, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   61 [ 3: STORE_V] PC:  3 DR:  9 SB:  0 RG: [9, 111, 0, 0] 
   DEBUG    root:data_path.py:153 output: hello wo << 111
-  DEBUG    root:simulation.py:26 TICK:   55 [ 4: NEXT   ] PC:  4 DR:  1 SB:  0 RG: [9, 111, 0, 0] 
-  DEBUG    root:simulation.py:26 TICK:   58 [ 5: JMP    ] PC:  5 DR: 10 SB:  0 RG: [10, 114, 0, 0] 
-  DEBUG    root:simulation.py:26 TICK:   59 [ 2: JZ_R   ] PC:  2 DR: 10 SB:  0 RG: [10, 114, 0, 0] 
-  DEBUG    root:simulation.py:26 TICK:   60 [ 3: STORE_V] PC:  3 DR: 10 SB:  0 RG: [10, 114, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   63 [ 4: NEXT   ] PC:  4 DR:  1 SB:  0 RG: [9, 111, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   66 [ 5: JMP    ] PC:  5 DR: 10 SB:  0 RG: [10, 114, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   67 [ 2: JZ_R   ] PC:  2 DR: 10 SB:  0 RG: [10, 114, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   69 [ 3: STORE_V] PC:  3 DR: 10 SB:  0 RG: [10, 114, 0, 0] 
   DEBUG    root:data_path.py:153 output: hello wor << 114
-  DEBUG    root:simulation.py:26 TICK:   62 [ 4: NEXT   ] PC:  4 DR:  1 SB:  0 RG: [10, 114, 0, 0] 
-  DEBUG    root:simulation.py:26 TICK:   65 [ 5: JMP    ] PC:  5 DR: 11 SB:  0 RG: [11, 108, 0, 0] 
-  DEBUG    root:simulation.py:26 TICK:   66 [ 2: JZ_R   ] PC:  2 DR: 11 SB:  0 RG: [11, 108, 0, 0] 
-  DEBUG    root:simulation.py:26 TICK:   67 [ 3: STORE_V] PC:  3 DR: 11 SB:  0 RG: [11, 108, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   71 [ 4: NEXT   ] PC:  4 DR:  1 SB:  0 RG: [10, 114, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   74 [ 5: JMP    ] PC:  5 DR: 11 SB:  0 RG: [11, 108, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   75 [ 2: JZ_R   ] PC:  2 DR: 11 SB:  0 RG: [11, 108, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   77 [ 3: STORE_V] PC:  3 DR: 11 SB:  0 RG: [11, 108, 0, 0] 
   DEBUG    root:data_path.py:153 output: hello worl << 108
-  DEBUG    root:simulation.py:26 TICK:   69 [ 4: NEXT   ] PC:  4 DR:  1 SB:  0 RG: [11, 108, 0, 0] 
-  DEBUG    root:simulation.py:26 TICK:   72 [ 5: JMP    ] PC:  5 DR: 12 SB:  0 RG: [12, 100, 0, 0] 
-  DEBUG    root:simulation.py:26 TICK:   73 [ 2: JZ_R   ] PC:  2 DR: 12 SB:  0 RG: [12, 100, 0, 0] 
-  DEBUG    root:simulation.py:26 TICK:   74 [ 3: STORE_V] PC:  3 DR: 12 SB:  0 RG: [12, 100, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   79 [ 4: NEXT   ] PC:  4 DR:  1 SB:  0 RG: [11, 108, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   82 [ 5: JMP    ] PC:  5 DR: 12 SB:  0 RG: [12, 100, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   83 [ 2: JZ_R   ] PC:  2 DR: 12 SB:  0 RG: [12, 100, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   85 [ 3: STORE_V] PC:  3 DR: 12 SB:  0 RG: [12, 100, 0, 0] 
   DEBUG    root:data_path.py:153 output: hello world << 100
-  DEBUG    root:simulation.py:26 TICK:   76 [ 4: NEXT   ] PC:  4 DR:  1 SB:  0 RG: [12, 100, 0, 0] 
-  DEBUG    root:simulation.py:26 TICK:   79 [ 5: JMP    ] PC:  5 DR: 13 SB:  0 RG: [13, 0, 0, 0] 
-  DEBUG    root:simulation.py:26 TICK:   80 [ 2: JZ_R   ] PC:  2 DR: 13 SB:  0 RG: [13, 0, 0, 0] 
-  DEBUG    root:simulation.py:26 TICK:   81 [ 6: HLT    ] PC:  6 DR: 13 SB:  0 RG: [13, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   87 [ 4: NEXT   ] PC:  4 DR:  1 SB:  0 RG: [12, 100, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   90 [ 5: JMP    ] PC:  5 DR: 13 SB:  0 RG: [13, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   91 [ 2: JZ_R   ] PC:  2 DR: 13 SB:  0 RG: [13, 0, 0, 0] 
+  DEBUG    root:simulation.py:26 TICK:   93 [ 6: HLT    ] PC:  6 DR: 13 SB:  0 RG: [13, 0, 0, 0] 
   INFO     root:simulation.py:42 output_buffer: hello world
   INFO     root:simulation.py:68 End simulation
